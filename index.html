@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>pibble</title>
+<link rel="icon" href="pibble.ico" type="image/x-icon">
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #f0f0f0;
+    }
+
+    img {
+        width: 200px;
+        height: auto;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+	
+	.top-text {
+        position: absolute;
+        top: 0;
+        center: 0;
+        margin: 0;
+        padding: 10px;
+	}
+	
+    .squish {
+        transform: scaleY(0.7) scaleX(1.1);
+    }
+</style>
+</head>
+<body>
+
+<div class="top-text">
+	<h1>this is pibble. click to squish him!</h1>
+</div>
+
+<img id="pibblePic" src="pibble.png" alt="pibble">
+
+<script>
+    const img = document.getElementById('pibblePic');
+
+    img.addEventListener('click', () => {
+        img.classList.add('squish');
+
+        setTimeout(() => {
+            img.classList.remove('squish');
+        }, 200);
+    });
+</script>
+
+<audio id="pibbleSquish" src="pibble_squish.mp3"></audio>
+
+<script>
+	document.getElementById('pibblePic').addEventListener('click', function() {
+	const sound = document.getElementById('pibbleSquish');
+	sound.currentTime = 0;
+	sound.play();
+	});
+</script>
+
+</body>
+</html>
