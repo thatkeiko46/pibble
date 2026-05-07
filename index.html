@@ -43,56 +43,44 @@ img {
 <body>
 
 <div class="top-text">
-	<h1>this is pibble. click to squish him!</h1>
+    <h1>this is pibble. click to squish him!</h1>
 </div>
 
 <img id="pibblePic" src="pibble.png" alt="pibble">
 
-<img id="evilPibble" src="evil_pibble.png" style="display:none; width:200px; position:absolute;">
-
-<script>
-	const img = document.getElementById('pibblePic');
-
-	img.addEventListener('click', () => {
-		img.classList.add('squish');
-
-		setTimeout(() => {
-			img.classList.remove('squish');
-		}, 200);
-	});
-</script>
+<img id="evilPibble" src="evil_pibble.png" alt="evil pibble" style="display:none;">
 
 <audio id="pibbleSquish" src="pibble_squish.mp3"></audio>
 
-<script>
-	document.getElementById('pibblePic').addEventListener('click', function() {
-	const sound = document.getElementById('pibbleSquish');
-	sound.currentTime = 0;
-	sound.play();
-	});
-</script>
-
 <div class="bottom-text">
-	<h1>times squished: <span id="count">0</span></h1>
+    <h1>number of squishes: <span id="count">0</span></h1>
 </div>
 
 <script>
+	
 let count = 0;
-
-const image = document.getElementById("pibblePic");
-const counter = document.getElementById("count");
+	
+const normalPibble = document.getElementById("pibblePic");
 const evilPibble = document.getElementById("evilPibble");
+const counter = document.getElementById("count");
+const sound = document.getElementById("pibbleSquish");
 
 function randomRange(min, max) {
-	return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 let nextEvilClick = randomRange(1, 66);
 
-image.addEventListener("click", function() {
+normalPibble.addEventListener("click", () => {
+	normalPibble.classList.add("squish");
+	setTimeout(() => { normalPibble.classList.remove("squish"); }, 200);
+	
+	sound.currentTime = 0;
+	sound.play();
+
 	count++;
 	counter.textContent = count;
-	
+
 	if (count === nextEvilClick) {
 		normalPibble.style.display = "none";
 		evilPibble.style.display = "block";
@@ -101,7 +89,7 @@ image.addEventListener("click", function() {
 		count -= subtractClicks;
 		if (count < 0) count = 0;
 		counter.textContent = count;
-
+		
 		setTimeout(() => {
 			evilPibble.style.display = "none";
 			normalPibble.style.display = "block";
@@ -109,6 +97,14 @@ image.addEventListener("click", function() {
 		}, 4000);
 	}
 });
+
+//evilPibble.addEventListener("click", () => {
+    //evilPibble.classList.add("squish");
+    //setTimeout(() => { evilPibble.classList.remove("squish"); }, 200);
+
+    //sound.currentTime = 0;
+    //sound.play();
+//});
 </script>
 
 </body>
