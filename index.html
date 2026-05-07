@@ -4,40 +4,40 @@
 <link rel="icon" href="pibble.ico" type="image/x-icon">
 
 <style>
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: #f0f0f0;
-    }
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background: #f0f0f0;
+}
 
-    img {
-        width: 200px;
-        height: auto;
-        cursor: pointer;
-        transition: transform 0.2s ease;
-    }
+img {
+	width: 200px;
+	height: auto;
+	cursor: pointer;
+	transition: transform 0.2s ease;
+}
 	
-	.top-text {
-        position: absolute;
-        top: 0;
-        center: 0;
-        margin: 0;
-        padding: 10px;
-	}
+.top-text {
+	position: absolute;
+	top: 0;
+	center: 0;
+	margin: 0;
+	padding: 10px;
+}
 
-	.bottom-text {
-		position: absolute;
-		bottom: 0;
-		center: 0;
-		margin: 0;
-		padding: 10px;
-	}
+.bottom-text {
+	position: absolute;
+	bottom: 0;
+	center: 0;
+	margin: 0;
+	padding: 10px;
+}
 	
-    .squish {
-        transform: scaleY(0.1) scaleX(1.9);
-    }
+.squish {
+	transform: scaleY(0.1) scaleX(1.9);
+	}
 </style>
 </head>
 <body>
@@ -48,16 +48,18 @@
 
 <img id="pibblePic" src="pibble.png" alt="pibble">
 
+<img id="evilPibble" src="evil-pibble.png" alt="evilpibble">
+
 <script>
-    const img = document.getElementById('pibblePic');
+	const img = document.getElementById('pibblePic');
 
-    img.addEventListener('click', () => {
-        img.classList.add('squish');
+	img.addEventListener('click', () => {
+		img.classList.add('squish');
 
-        setTimeout(() => {
-            img.classList.remove('squish');
-        }, 200);
-    });
+		setTimeout(() => {
+			img.classList.remove('squish');
+		}, 200);
+	});
 </script>
 
 <audio id="pibbleSquish" src="pibble_squish.mp3"></audio>
@@ -71,19 +73,39 @@
 </script>
 
 <div class="bottom-text">
-	<h1>number of squishes: <span id="count">0</span></h1>
+	<h1>times squished: <span id="count">0</span></h1>
 </div>
 
 <script>
-  let count = 0;
+let count = 0;
 
-  const image = document.getElementById("pibblePic");
-  const counter = document.getElementById("count");
+const image = document.getElementById("pibblePic");
+const counter = document.getElementById("count");
 
-  image.addEventListener("click", function() {
-    count++;
-    counter.textContent = count;
-  });
+function randomRange(min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+let nextEvilClick = randomRange(1, 66);
+
+image.addEventListener("click", function() {
+	count++;
+	counter.textContent = count;
+	
+	if (count === nextEvilClick) {
+		image.erc = "evil-pibble.png";
+
+		const subtractClicks = randomRange(5, 30);
+		count -= subtractClicks;
+		if (count < 0) count = 0;
+		counter.textContent = count;
+
+		setTimeout(() => {
+			image.src = "pibble.png";
+			nextEvilClick = count + randomRange(1, 66);
+		}, 4000);
+	}
+});
 </script>
 
 </body>
