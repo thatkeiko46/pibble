@@ -52,6 +52,8 @@ img {
 
 <audio id="pibbleSquish" src="pibble_squish.mp3"></audio>
 
+<audio id="evilPibbleLaugh" src="evil-pibble-laugh.mp3"></audio>
+
 <div class="bottom-text">
     <h1>number of squishes: <span id="count">0</span></h1>
 </div>
@@ -64,6 +66,7 @@ const normalPibble = document.getElementById("pibblePic");
 const evilPibble = document.getElementById("evilPibble");
 const counter = document.getElementById("count");
 const sound = document.getElementById("pibbleSquish");
+const sound = document.getElementById("evilPibbleLaugh");
 
 function randomRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -98,13 +101,13 @@ normalPibble.addEventListener("click", () => {
 	}
 });
 
-//evilPibble.addEventListener("click", () => {
-    //evilPibble.classList.add("squish");
-    //setTimeout(() => { evilPibble.classList.remove("squish"); }, 200);
+evilPibble.addEventListener("click", () => {
+    evilPibble.classList.add("evilPibbleLaugh");
+    setTimeout(() => { evilPibble.classList.remove("evilPibbleLaugh"); }, 200);
 
-    //sound.currentTime = 0;
-    //sound.play();
-//});
+    sound.currentTime = 0;
+    sound.play();
+});
 </script>
 
 </body>
