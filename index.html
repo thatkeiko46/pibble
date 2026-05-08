@@ -69,7 +69,7 @@ function randomRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-let nextEvilClick = randomRange(1, 666);
+let nextEvilClick = randomRange(1, 66);
 
 normalPibble.addEventListener("click", () => {
 	normalPibble.classList.add("squish");
@@ -85,7 +85,7 @@ normalPibble.addEventListener("click", () => {
 		normalPibble.style.display = "none";
 		evilPibble.style.display = "block";
 
-		const subtractClicks = randomRange(5, 30);
+		const subtractClicks = randomRange(5, 15);
 		count -= subtractClicks;
 		if (count < 0) count = 0;
 		counter.textContent = count;
