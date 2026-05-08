@@ -37,7 +37,7 @@ img {
 	
 .squish {
 	transform: scaleY(0.1) scaleX(1.9);
-	}
+}
 </style>
 </head>
 <body>
@@ -71,7 +71,7 @@ function randomRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-let nextEvilClick = randomRange(1, 66);
+let nextEvilClick = randomRange(1, 666);
 
 normalPibble.addEventListener("click", () => {
 	normalPibble.classList.add("squish");
@@ -100,13 +100,6 @@ normalPibble.addEventListener("click", () => {
 	}
 });
 
-//evilPibble.addEventListener("click", () => {
-    //evilPibble.classList.add("evilPibbleLaugh");
-    //setTimeout(() => { evilPibble.classList.remove("evilPibbleLaugh"); }, 200);
-
-    //sound.currentTime = 0;
-    //sound.play();
-//});
 </script>
 
 </body>
